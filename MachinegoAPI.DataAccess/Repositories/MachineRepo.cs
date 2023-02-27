@@ -40,7 +40,8 @@ namespace MachinegoAPI.DataAccess.Repositories
 
         public Machine? GetById(int id)
         {
-            return _dataContext.Machines.FirstOrDefault(e => e.Id == id);
+            return _dataContext.Machines.Include(e=>e.Attachments).ThenInclude(e=>e.Attachment)
+                .Include(e=>e.Brand).Include(e=>e.Category).Include(e=>e.MachineType).AsSplitQuery().AsNoTracking().FirstOrDefault(e => e.Id == id);
         }
 
         public ICollection<Machine>? GetAll()

@@ -55,7 +55,13 @@ namespace MachinegoAPI.Controllers
             var res = _machineService.AddMachine(machineDto);
             if (res != null) { return Ok(res); }
             else { return NotFound(); }
-            //Todo DTO Return will be added
+        }
+        [HttpGet("machine/{id}")]
+        public ActionResult MachineGetById(int id)
+        {
+            var res = _machineService.GetMachineById(id);
+            if (res != null) { return Ok(res); }
+            else { return NotFound(); }
         }
     }
 }

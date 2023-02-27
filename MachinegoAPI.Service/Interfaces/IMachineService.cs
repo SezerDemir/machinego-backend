@@ -15,5 +15,6 @@ namespace MachinegoAPI.Service.Interfaces
         public ICollection<String> GetBrandsByCategory(string category);
         public ICollection<String> GetTypesByCategory(string category);
         public MachineDto? AddMachine(MachineDto machineDto);
+        public MachineDto? GetMachineById(int id);
     }
 }

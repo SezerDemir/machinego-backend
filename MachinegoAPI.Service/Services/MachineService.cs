@@ -61,6 +61,7 @@ namespace MachinegoAPI.Service.Services
             string category = machineDto.Category;
             string brand = machineDto.Brand;
             string machineType = machineDto.MachineType;
+
             if (String.Equals(model, "")) { return null; }
             if (year < 1600 || year > DateTime.Now.Year) { return null; }
             var cat = _categoryRepo.GetByName(category);
@@ -93,6 +94,11 @@ namespace MachinegoAPI.Service.Services
 
             return _mapper.Map<MachineDto>(addedMachine);
 
+        }
+
+        public MachineDto? GetMachineById(int id)
+        {
+            return _mapper.Map<MachineDto>(_machineRepo.GetById(id));
         }
     }
 }
