@@ -20,7 +20,7 @@ namespace MachinegoAPI.DataAccess.Repositories
 
         public Attachment? GetByName(string name)
         {
-            return _dataContext.Attachments.FirstOrDefault(a => a.Name == name);
+            return _dataContext.Attachments.FirstOrDefault(a =>  String.Equals(a.Name , name));
         }
     }
 }

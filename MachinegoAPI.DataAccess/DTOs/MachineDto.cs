@@ -13,7 +13,7 @@ namespace MachinegoAPI.DataAccess.DTOs
         public string Model { get; set; }
         public int ProductionYear { get; set; }
         public string Brand { get; set; }
-        public List<string> Attachments { get; set; }
+        public List<string>? Attachments { get; set; }
         public string Category { get; set; }
         public string MachineType { get; set; }
     }

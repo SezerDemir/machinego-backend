@@ -1,13 +1,12 @@
-﻿using MachinegoAPI.DataAccess.Data;
+﻿using AutoMapper;
+using MachinegoAPI.DataAccess.Data;
 using MachinegoAPI.DataAccess.DTOs;
 using MachinegoAPI.DataAccess.Models;
 using MachinegoAPI.DataAccess.RepoInterfaces;
 using MachinegoAPI.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace MachinegoAPI.Service.Services
 {
@@ -19,14 +18,19 @@ namespace MachinegoAPI.Service.Services
         private readonly ITypeRepo _typeRepo;
         private readonly IAttachmentRepo _attachmentRepo;
         private readonly IMachineRepo _machineRepo;
+        private readonly IMapper _mapper;
+        private readonly ILogger<MachineService> _logger;
 
-        public MachineService(ICategoryRepo categoryRepo, IBrandRepo brandRepo, ITypeRepo typeRepo, IAttachmentRepo attachmentRepo, IMachineRepo machineRepo )
+        public MachineService(ICategoryRepo categoryRepo, IBrandRepo brandRepo, ITypeRepo typeRepo,
+            IAttachmentRepo attachmentRepo, IMachineRepo machineRepo, IMapper mapper, ILogger<MachineService> logger)
         {
             _categoryRepo = categoryRepo;
             _brandRepo = brandRepo;
             _typeRepo = typeRepo;   
             _attachmentRepo = attachmentRepo;   
             _machineRepo = machineRepo;
+            _mapper = mapper;
+            _logger = logger;
         }
 
         public ICollection<MachineCategory> GetAllCategories()
@@ -49,7 +53,7 @@ namespace MachinegoAPI.Service.Services
             return _categoryRepo.GetAttachmentsByType(typeName);
         }
 
-        public Machine? AddMachine(MachineDto machineDto)
+        public MachineDto? AddMachine(MachineDto machineDto)
         {
 
             string model = machineDto.Model;
@@ -86,8 +90,8 @@ namespace MachinegoAPI.Service.Services
             }
 
             var addedMachine = _machineRepo.AddMachine(machine, machineAttachments);
-           
-            return addedMachine;
+
+            return _mapper.Map<MachineDto>(addedMachine);
 
         }
     }

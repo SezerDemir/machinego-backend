@@ -14,6 +14,6 @@ namespace MachinegoAPI.Service.Interfaces
         public ICollection<String> GetAttachmentsByType(string typeName);
         public ICollection<String> GetBrandsByCategory(string category);
         public ICollection<String> GetTypesByCategory(string category);
-        public Machine? AddMachine(MachineDto machineDto);
+        public MachineDto? AddMachine(MachineDto machineDto);
     }
 }

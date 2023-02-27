@@ -5,6 +5,7 @@ using MachinegoAPI.DataAccess.Repositories;
 using MachinegoAPI.Service.Interfaces;
 using MachinegoAPI.Service.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,8 @@ builder.Services.AddScoped<IBrandRepo, BrandRepo>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IMachineRepo, MachineRepo>();
 builder.Services.AddScoped<ITypeRepo, TypeRepo>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var app = builder.Build();

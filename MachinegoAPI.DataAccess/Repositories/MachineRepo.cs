@@ -34,7 +34,13 @@ namespace MachinegoAPI.DataAccess.Repositories
                 _dataContext.MachineAttachments.Add(attachment);
             }
             _dataContext.SaveChanges();
+            machine = _dataContext.Machines.FirstOrDefault(e=>e.Id == id);
             return machine;
+        }
+
+        public Machine? GetById(int id)
+        {
+            return _dataContext.Machines.FirstOrDefault(e => e.Id == id);
         }
 
         public ICollection<Machine>? GetAll()

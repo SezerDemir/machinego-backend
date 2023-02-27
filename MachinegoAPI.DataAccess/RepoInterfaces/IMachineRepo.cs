@@ -11,6 +11,7 @@ namespace MachinegoAPI.DataAccess.RepoInterfaces
     {
         public ICollection<Machine>? GetAll();
         public Machine AddMachine(Machine machine, List<MachiceAttachment> machineAttachments);
+        public Machine? GetById(int id);
         public int GetNewId();
     }
 }
