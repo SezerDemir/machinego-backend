@@ -100,5 +100,10 @@ namespace MachinegoAPI.Service.Services
         {
             return _mapper.Map<MachineDto>(_machineRepo.GetById(id));
         }
+
+        public ICollection<string> GetBrandsByCategoryId(int categoryId)
+        {
+            return _categoryRepo.GetBrandByCategoryId(categoryId);
+        }
     }
 }

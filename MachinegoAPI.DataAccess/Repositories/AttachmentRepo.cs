@@ -18,6 +18,11 @@ namespace MachinegoAPI.DataAccess.Repositories
             _dataContext = dataContext;
         }
 
+        public Attachment? GetById(int id)
+        {
+            return _dataContext.Attachments.FirstOrDefault(x => x.Id == id);
+        }
+
         public Attachment? GetByName(string name)
         {
             return _dataContext.Attachments.FirstOrDefault(a =>  String.Equals(a.Name , name));

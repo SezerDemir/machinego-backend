@@ -10,5 +10,6 @@ namespace MachinegoAPI.DataAccess.RepoInterfaces
     public interface ITypeRepo
     {
         public MachineType? GetByName(string name);
+        public MachineType? GetById(int id);
     }
 }

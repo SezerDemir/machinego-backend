@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MachinegoAPI.DataAccess.Migrations
 {
-    public partial class InitMigration : Migration
+    public partial class MigrationInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,7 @@ namespace MachinegoAPI.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +28,7 @@ namespace MachinegoAPI.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,7 +41,7 @@ namespace MachinegoAPI.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,7 +54,7 @@ namespace MachinegoAPI.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -290,6 +290,18 @@ namespace MachinegoAPI.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Attachments_Name",
+                table: "Attachments",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Brands_Name",
+                table: "Brands",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CategoryBrand_BrandId",
                 table: "CategoryBrand",
                 column: "BrandId");
@@ -305,6 +317,12 @@ namespace MachinegoAPI.DataAccess.Migrations
                 column: "AttachmentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MachineCategories_Name",
+                table: "MachineCategories",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Machines_BrandId",
                 table: "Machines",
                 column: "BrandId");
@@ -318,6 +336,12 @@ namespace MachinegoAPI.DataAccess.Migrations
                 name: "IX_Machines_MachineTypeId",
                 table: "Machines",
                 column: "MachineTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MachineTypes_Name",
+                table: "MachineTypes",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_TypeAttachment_AttachmentId",

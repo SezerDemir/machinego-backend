@@ -18,6 +18,11 @@ namespace MachinegoAPI.DataAccess.Repositories
             _dataContext = dataContext;
         }
 
+        public MachineType? GetById(int id)
+        {
+            return _dataContext.MachineTypes.FirstOrDefault(t => t.Id == id);
+        }
+
         public MachineType? GetByName(string name)
         {
             return _dataContext.MachineTypes.FirstOrDefault(t => String.Equals(t.Name, name));

@@ -26,11 +26,19 @@ namespace MachinegoAPI.Controllers
             return Ok(_machineService.GetAllCategories());
         }
 
-        [HttpGet("brand/{category}")]
-        public ActionResult GetAllCategories(string category)
+        [HttpGet("brand/getByCategoryName")]
+        public ActionResult GetBrands([FromQuery(Name = "category")] string category)
         {
             var res = _machineService.GetBrandsByCategory(category);
             if(res != null) { return Ok(res); }
+            else { return NotFound(); }
+        }
+
+        [HttpGet("brand/get")]
+        public ActionResult GetBrandsByCategoryId([FromQuery(Name = "id")]int Id)
+        {
+            var res = _machineService.GetBrandsByCategoryId(Id);
+            if (res != null) { return Ok(res); }
             else { return NotFound(); }
         }
 
@@ -49,6 +57,7 @@ namespace MachinegoAPI.Controllers
             if (res != null) { return Ok(res); }
             else { return NotFound(); }
         }
+
         [HttpPost("machine/add")]
         public ActionResult MachineAdd(MachineDto machineDto)
         {
@@ -56,6 +65,7 @@ namespace MachinegoAPI.Controllers
             if (res != null) { return Ok(res); }
             else { return NotFound(); }
         }
+
         [HttpGet("machine/{id}")]
         public ActionResult MachineGetById(int id)
         {

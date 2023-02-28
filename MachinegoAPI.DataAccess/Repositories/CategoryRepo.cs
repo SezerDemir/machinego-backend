@@ -68,5 +68,16 @@ namespace MachinegoAPI.DataAccess.Repositories
             var category = _dataContext.MachineCategories.FirstOrDefault(c => String.Equals(c.Name, name));
             return category;
         }
+
+        public MachineCategory? GetById(int id)
+        {
+            return _dataContext.MachineCategories.FirstOrDefault(e => e.Id == id);
+        }
+
+        public ICollection<string> GetBrandByCategoryId(int categoryId)
+        {
+            var category = _dataContext.MachineCategories.Include(e => e.Brands).ThenInclude(e => e.Brand).AsNoTracking().FirstOrDefault(e => e.Id == categoryId);
+            return category.Brands.Select(e => e.Brand).Select(e => e.Name).ToList();
+        }
     }
 }

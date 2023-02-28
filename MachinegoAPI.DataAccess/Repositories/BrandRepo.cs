@@ -18,6 +18,11 @@ namespace MachinegoAPI.DataAccess.Repositories
             _dataContext = dataContext;
         }
 
+        public Brand? GetById(int id)
+        {
+            return _dataContext.Brands.FirstOrDefault(b => b.Id == id);
+        }
+
         public Brand? GetByName(string name)
         {
             return _dataContext.Brands.FirstOrDefault(b => String.Equals(b.Name, name));
