@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MachinegoAPI.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230228104252_MigrationInit")]
-    partial class MigrationInit
+    [Migration("20230301110214_InitMigration")]
+    partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

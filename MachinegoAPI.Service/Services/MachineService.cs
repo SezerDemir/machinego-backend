@@ -55,26 +55,27 @@ namespace MachinegoAPI.Service.Services
 
         public MachineDto? AddMachine(MachineDto machineDto)
         {
-
-            string model = machineDto.Model;
-            int year = machineDto.ProductionYear;
-            string category = machineDto.Category;
-            string brand = machineDto.Brand;
-            string machineType = machineDto.MachineType;
-
-            var cat = _categoryRepo.GetByName(category);
-            var br = _brandRepo.GetByName(brand);
-            var ty = _typeRepo.GetByName(machineType);
             ICollection<Attachment> attachmentsList = new List<Attachment>();
+            var cat = _categoryRepo.GetByName(machineDto.Category);
+            var br = _brandRepo.GetByName(machineDto.Brand);
+            var ty = _typeRepo.GetByName(machineDto.MachineType);
             foreach (var a in machineDto.Attachments)
             {
                 var att = _attachmentRepo.GetByName(a);
+                if (att == null)
+                {
+                    return null;
+                }
                 attachmentsList.Add(att);
+            }
+            if(cat == null || br == null || ty == null)
+            {
+                return null;
             }
 
             Machine machine = new Machine();
-            machine.Model = model;
-            machine.ProductionYear = year;
+            machine.Model = machineDto.Model;
+            machine.ProductionYear = machineDto.ProductionYear;
             machine.Category = cat;
             machine.Brand = br;
             machine.MachineType = ty;
