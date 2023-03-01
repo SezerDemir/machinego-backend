@@ -62,19 +62,13 @@ namespace MachinegoAPI.Service.Services
             string brand = machineDto.Brand;
             string machineType = machineDto.MachineType;
 
-            if (String.Equals(model, "")) { return null; }
-            if (year < 1600 || year > DateTime.Now.Year) { return null; }
             var cat = _categoryRepo.GetByName(category);
-            if (cat == null) { return null; }
             var br = _brandRepo.GetByName(brand);
-            if (br == null) { return null; }
             var ty = _typeRepo.GetByName(machineType);
-            if (ty == null) { return null; }
             ICollection<Attachment> attachmentsList = new List<Attachment>();
             foreach (var a in machineDto.Attachments)
             {
                 var att = _attachmentRepo.GetByName(a);
-                if (att == null) { return null; }
                 attachmentsList.Add(att);
             }
 

@@ -1,5 +1,6 @@
 ﻿
 using MachinegoAPI.DataAccess.DTOs;
+using MachinegoAPI.DataAccess.DTOs.Validators;
 using MachinegoAPI.Service.Interfaces;
 using MachinegoAPI.Service.Services;
 using Microsoft.AspNetCore.Http;

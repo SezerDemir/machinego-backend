@@ -1,4 +1,6 @@
+using FluentValidation.AspNetCore;
 using MachinegoAPI.DataAccess.Data;
+using MachinegoAPI.DataAccess.DTOs.Validators;
 using MachinegoAPI.DataAccess.Models;
 using MachinegoAPI.DataAccess.RepoInterfaces;
 using MachinegoAPI.DataAccess.Repositories;
@@ -10,9 +12,14 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+    .AddFluentValidation(options =>
+    {
+        options.RegisterValidatorsFromAssemblyContaining<MachineDtoValidator>();
+    });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
